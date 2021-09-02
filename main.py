@@ -149,6 +149,7 @@ score = 0
 
 
 def show_score(x, y):
+
     score1 = font.render("Score : " + str(score), True, (1, 1, 1))
     screen.blit(score1, (10, 10))
     passed = font.render("Car Passed : " + str(car_passed), True, (1, 1, 1))
@@ -277,9 +278,9 @@ def paused():
             screen.blit(textSurface, textRect)
 
             mouse = pygame.mouse.get_pos()
-            '''click = pygame.mouse.get_pressed()
+            click = pygame.mouse.get_pressed()
             
-                pygame.draw.rect(screen, (0, 180, 0), (650, 0, 150, 50))
+            '''pygame.draw.rect(screen, (0, 180, 0), (650, 0, 150, 50))
                 if click == (True, 0, 0):
                     paused()'''
 
@@ -287,22 +288,38 @@ def paused():
 
 
             if mouse[0] > 100 and mouse[0] < 250 and mouse[1] > 450 and mouse[1] < 500:
-                pygame.draw.rect(screen, (0, 180, 0), (100, 450, 150, 50))
+                pygame.draw.rect(screen, (0, 0, 205), (100, 450, 150, 50))
+                if click == (True, 0, 0):
+                    pause=False
 
             else:
-                pygame.draw.rect(screen, (0, 250, 0), (100, 450, 150, 50))
+                pygame.draw.rect(screen, (0, 0,255 ), (100, 450, 150, 50))
             smallText = pygame.font.Font('freesansbold.ttf', 25)
             textSurface, textRect = text_object("CONTINUE", smallText)
             textRect.center = ((100+(150/2)), (450+(50/2)))
             screen.blit(textSurface, textRect)
             #for restart
-            pygame.draw.rect(screen, (0, 250, 0), (350, 450, 150, 50))
+            if mouse[0] > 350 and mouse[0] < 500 and mouse[1] > 450 and mouse[1] < 500:
+                pygame.draw.rect(screen, (0, 180, 0), (350, 450, 150, 50))
+                if click == (True, 0, 0):
+                    game_loop()
+
+            else:
+                pygame.draw.rect(screen, (0, 250, 0), (350, 450, 150, 50))
+
             smallText = pygame.font.Font('freesansbold.ttf', 25)
             textSurface, textRect = text_object("RESTART", smallText)
             textRect.center = ((350 + (150 / 2)), (450 + (50 / 2)))
             screen.blit(textSurface, textRect)
             #for main menu
-            pygame.draw.rect(screen, (0, 250, 0), (600, 450, 150, 50))
+            if mouse[0] > 600 and mouse[0] < 750 and mouse[1] > 450 and mouse[1] < 500:
+                pygame.draw.rect(screen, (200, 0, 0), (600, 450, 150, 50))
+                if click == (True, 0, 0):
+                    entrypage_loop()
+
+            else:
+                pygame.draw.rect(screen, (255,0,0), (600, 450, 150, 50))
+
             smallText = pygame.font.Font('freesansbold.ttf', 25)
             textSurface, textRect = text_object("MAIN MENU", smallText)
             textRect.center = ((600 + (150 / 2)), (450 + (50 / 2)))
@@ -501,9 +518,9 @@ def game_loop():
         # screen.blit(over_text, (30, 250))
         # pygame.display.update()
         # time.sleep(2)
-
-        clock.tick(80)
         show_score(score, car_passed)
+        clock.tick(80)
+
 
         pygame.draw.rect(screen, (0, 250, 0), (650, 0, 150, 50))
         mouse = pygame.mouse.get_pos()
